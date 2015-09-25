@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1443203684 source:/home/edgar/Expo/main.cpp
+1443205504 source:/home/edgar/Expo/main.cpp
 	<iostream>
 	<allegro5/allegro.h>
 	"allegro5/allegro_image.h"

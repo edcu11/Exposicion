@@ -84,7 +84,8 @@ int alinit()
 }
 
 
-bool rotated=false;
+bool rotated=false, flip=false;
+
 
 int main()
 {
@@ -108,40 +109,34 @@ int main()
          bool get_event = al_wait_for_event_until(event_queue, &ev, &timeout);
          al_draw_bitmap(fondo,0,0,0);
 
-        if(ev.keyboard.keycode== ALLEGRO_KEY_A){
+        if(ev.joystick.button== 2){
+            if(!flip)
+                flip=true;
+            else
+                flip=false;
+        }
+
+        if( ev.joystick.button== 1){
             if(!rotated)
                 rotated=true;
             else
                 rotated=false;
         }
-
-//         if( ev.type == ALLEGRO_EVENT_JOYSTICK_AXIS){
-//            if(!rotated)
-//                rotated=true;
-//            else
-//                rotated=false;
-//        }
-          if( ev.joystick.button== 1){
-            if(!rotated)
-                rotated=true;
-            else
-                rotated=false;
-        }
-
-//        if(ev.keyboard.keycode== ALLEGRO_KEY_A){
-//        cout<<al_get_joystick_button_name(joystick,2)<<endl;
-//            if(ev.joystick.button==2)
-//            al_draw_rotated_bitmap(per,20,20,20,20,2,3);
-//        }
 
         if(rotated){
-            al_draw_rotated_bitmap(per,20,20,20,20,2,3);
+            al_draw_rotated_bitmap(per,50,50,50,50,2,3);
         }
 
         else{
           al_draw_bitmap(per, 0, 0, 0);
         }
 
+        if(flip){
+             al_draw_bitmap(per, 100, 100 , ALLEGRO_FLIP_VERTICAL);
+        }
+        else{
+             al_draw_bitmap(per, 0, 0 , 0);
+        }
 
         if(ev.keyboard.keycode == ALLEGRO_KEY_SPACE)
             salir=false;
